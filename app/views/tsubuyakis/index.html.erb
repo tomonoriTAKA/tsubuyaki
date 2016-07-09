@@ -1,0 +1,31 @@
+
+<h1>ついったー的な？</h1>
+<div class="row">
+
+  <div class='col-md-3' >
+    <div class="thumbnail">
+      <% if user_signed_in? %>
+        <% user = current_user %>
+        <%= image_tag user.image_url %>
+        <div class="caption">
+          <h3>ユーザー名:<%= user.name %></h3>
+          <p>ユーザー詳細:<%= user.description %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class = 'col-md-6'>
+        <h3>全てのつぶやき</h3>
+        <hr>
+        <% @tweets.each do |tweet| %>
+          <div class="article">
+                <p>投稿日時：<%= tweet.created_at %></p>
+                <p>つぶやき：<%= simple_format(tweet.tweet) %></p>
+                <hr>
+          </div>
+        <% end %>
+  </div>
+</div>
+
+

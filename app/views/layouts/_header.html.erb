@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default bootsnav">
+    <div class="container">
+        <!-- Start Header Navigation -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <!-- End Header Navigation -->
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-menu">
+
+           <ul class="nav navbar-nav navbar-left">
+
+                <li><%= link_to "ホーム", tsubuyakis_path %></li>
+                <li><%= link_to "新しくつぶやく", new_tsubuyaki_path %></li>
+                <% if user_signed_in? %>
+                  <li><%= link_to '設定変更', edit_user_registration_path %></li>
+                  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか？'} %></li>
+                <% else %>
+                  <li><%= link_to '新規ユーザー登録', new_user_registration_path %></li>
+                  <li><%= link_to 'ログイン', new_user_session_path %></li>
+                <% end %>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div>
+</nav>

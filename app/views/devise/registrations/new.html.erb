@@ -37,6 +37,15 @@
         <%= f.text_field :image_url , class:"form-control"%>
       </div>
 
+      <div class="field">
+        プロフィール画像登録 <br>
+        <%= f.label :image do %>
+        <%= f.file_field :image %>
+        <%= f.hidden_field :image_cache,class:"form-control"%>
+        <% end %>
+      </div>
+
+
       <div class="actions">
         <%= f.submit "サインアップ！" ,class: "btn btn-primary"%>
       </div>

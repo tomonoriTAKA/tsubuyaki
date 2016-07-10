@@ -5,9 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :tsubuyakis, dependent: :destroy
   mount_uploader :image, ImageUploader
-  has_many :active_relationships, class_name:  "Relationship",
-                                  foreign_key: "follower_id",
-                                  dependent:   :destroy
+
+  has_many :active_relationships, class_name:  "Relationship",foreign_key: "follower_id",dependent: :destroy
+
   has_many :following, through: :active_relationships, source: :followed
   has_many :passive_relationships, class_name:  "Relationship",
                                    foreign_key: "followed_id",
@@ -30,4 +30,9 @@ class User < ActiveRecord::Base
     following.include?(other_user)
   end
 
+   # ユーザーのステータスフィードを返す
+  def feed
+    Tsubuyaki.where("user_id IN (:following_ids) OR user_id = :user_id",
+                    following_ids: following_ids, user_id: id)
+  end
 end

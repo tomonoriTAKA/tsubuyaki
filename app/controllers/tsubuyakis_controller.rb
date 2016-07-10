@@ -3,7 +3,7 @@ class TsubuyakisController < ApplicationController
   before_action :set_tsubuyaki, only: :detroy
   before_action :correct_user,   only: :destroy
   def index
-    @tweets = Tsubuyaki.all.order(created_at: :desc)
+    @tweets = Tsubuyaki.all.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new

@@ -6,6 +6,9 @@
       <%= devise_error_messages! %>
 
       <div class="form-group">
+        <%= f.label :name, "名前"%><br />
+        <%= f.text_field :name, class:"form-control"%>
+
         <%= f.label :email, "電子メール" %><br />
         <%= f.email_field :email, class: "form-control" %>
       </div>
@@ -26,14 +29,18 @@
       <div>
       <% if current_user.image.url.present? %>
         <%= image_tag(current_user.image.url) %>
-          <%= f.label :remove_image do %>
-            <%= f.check_box :remove_image %>
-          <% end %>
       <% end %>
+      <p>画像の登録</p>
       <%= f.file_field :image %>
       <%= f.hidden_field :image_cache %>
       </div>
-      <div class="form-group">
+
+      <div class="field">
+        <%= f.label :description, "自己詳細文"%><br />
+        <%= f.text_field :description , class:"form-control"%>
+      </div>
+
+       <div class="form-group">
         <%= f.label :current_password, "現在のパスワード" %> <i>（設定を変更する場合は、現在のパスワード入力が必要です）</i><br />
         <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
       </div>

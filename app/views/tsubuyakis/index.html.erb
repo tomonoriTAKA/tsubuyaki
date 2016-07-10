@@ -1,5 +1,5 @@
 
-<h1>ついったー的な？</h1>
+<%= image_tag 'spartter.png' ,alt:'spartter' %>
 <div class="row">
 
   <div class='col-md-3' >
@@ -13,25 +13,26 @@
             <p>ユーザー詳細:<%= user.description %></p>
           </div>
           <section class="stats">
-          <%= render 'layouts/stats' %>
+          <%= render 'users/stats' %>
           </section>
         <% end %>
       </div>
     </div>
   </div>
-  <div class = 'col-md-6'>
+  <div class = 'col-md-9'>
         <h3>全てのつぶやき</h3>
-        <hr>
+        <hr class="style6">
         <% @tweets.each do |tweet| %>
           <div class="article">
-                <p>つぶやいた人：<%= tweet.user.name %></p>
-                <p>つぶやき日時：<%= tweet.created_at %></p>
-                <p>つぶやき：<%= simple_format(tweet.tweet) %></p>
+                <p>つぶやいた人：<%= link_to tweet.user.name,tweet.user %></p>
+                <p><i>つぶやき日時：<%= tweet.created_at %></i></p>
+                <p><strong>つぶやき：<%= simple_format(tweet.tweet) %></strong></p>
                 <% if current_user==(tweet.user)  %>
                     <%= link_to "削除", tweet, method: :delete,data: {confirm: "本当に削除しますか?"} ,class: "btn btn-warning"%>
                 <% end %>
-                <hr>
+                <hr class= "style6">
           </div>
         <% end %>
+        <%= paginate @tweets %>
   </div>
 </div>
